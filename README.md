@@ -64,6 +64,9 @@ res$consensus      # consensus sequence (if units > 2)
 dotplot_optimized(dna_seq_char[2], dna_seq_char[2], "xx")
 ```
 
+![](man/figures/dot.png)
+
+
 ## Key Functions
 
 ### `get_circular_count()`
