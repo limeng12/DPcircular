@@ -1,0 +1,14 @@
+importFrom(Rcpp, sourceCpp)
+importFrom(Biostrings, DNAStringSet, consensusString, IUPAC_CODE_MAP)
+importFrom(stringr, str_sub, str_replace_all)
+importFrom(stringi, stri_reverse)
+importFrom(msa, msa)
+importFrom(scattermore, scattermoreplot)
+
+
+export(get_circular_count)
+export(dotplot_optimized)
+
+useDynLib(DPcircular, .registration = TRUE)
+importFrom(Rcpp, sourceCpp)
+exportPattern("^[[:alpha:]]+")

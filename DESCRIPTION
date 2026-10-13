@@ -1,0 +1,24 @@
+Package: DPcircular
+Type: Package
+Title: Circular Sequence Detection via DP
+Version: 0.1.0
+Date: 2026-04-10
+Author: Meng Li
+Maintainer: Meng Li <limeng49631@aliyun.com>
+Description: Detects circular sequences in DNA/RNA using a modified
+    Smith-Waterman local alignment algorithm. Provides circular detection,
+    consensus generation, and dotplot visualization utilities.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    Biostrings,
+    stringr,
+    stringi,
+    Rcpp,
+    msa,
+    ggplot2,
+    scattermore,
+    ggpointdensity
+LinkingTo: Rcpp
+RoxygenNote: 7.3.3
