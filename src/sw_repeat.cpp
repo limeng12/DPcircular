@@ -16,7 +16,8 @@ List sw_circular_cpp2(std::string sequence1,std::string sequence2, bool output_m
                      int mismatch_penalty = -1,
                      int gap_penalty = -2,
                      int diagonal_penalty = -10000,
-                     int offset = 0) {
+                     int offset = 0, 
+                     bool trunc=true ) {
   
   std::string seq_str1 = (sequence1);
   std::string seq_str2 = (sequence2);
@@ -140,9 +141,14 @@ List sw_circular_cpp2(std::string sequence1,std::string sequence2, bool output_m
   
   
   
-  start_j=start_max_j;
-  start_i=start_max_i;
-  max_score_val=total_max_score;
+  
+  if(trunc){
+    start_j=start_max_j;
+    start_i=start_max_i;
+    max_score_val=total_max_score;
+    
+  }
+  
   
   
   int normal_score=1;
@@ -356,7 +362,8 @@ List sw_circular_cpp(std::string sequence, bool output_matrix=false,
                      int mismatch_penalty = -1,
                      int gap_penalty = -3,
                      int diagonal_penalty = -10000,
-                     int offset = 0) {
+                     int offset = 0,
+                     bool trunc=true) {
   
   int n=sequence.length();
   int t_offset= floor( n / 2.0-std::min(n/4.0, 2050.0) );
@@ -367,7 +374,8 @@ List sw_circular_cpp(std::string sequence, bool output_matrix=false,
                           mismatch_penalty=mismatch_penalty,
                           gap_penalty=gap_penalty,
                           diagonal_penalty=diagonal_penalty,
-                          offset= t_offset
+                          offset= t_offset,
+                          trunc = trunc
                           
                           ) );
   
@@ -529,7 +537,7 @@ List sw_cpp(CharacterVector sequence1,
 }
 
 
-// [[Rcpp::export]]
+// [[Rcpp::export(rng=FALSE)]]
 NumericMatrix compute_matches(CharacterVector seq1, CharacterVector seq2,
                               int window, int step, double min_match) {
   int len1 = seq1.size(), len2 = seq2.size();

@@ -55,6 +55,7 @@ get_circular_count <- function(seq){
   score <- 0
   circular_seqs <- c()
   units <- c()
+  trunc <- TRUE
   
   while(length(seq_stack) > 0) {
     curr <- seq_stack[[1]]
@@ -64,7 +65,9 @@ get_circular_count <- function(seq){
     
     if(nchar(seq1) < 15) next
     
-    a <- sw_circular_cpp(seq1)
+    a <- sw_circular_cpp(seq1, trunc=trunc)
+    
+    trunc <- FALSE
     
     score <- a$score;
     

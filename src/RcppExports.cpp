@@ -11,8 +11,8 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // sw_circular_cpp2
-List sw_circular_cpp2(std::string sequence1, std::string sequence2, bool output_matrix, int match_score, int mismatch_penalty, int gap_penalty, int diagonal_penalty, int offset);
-RcppExport SEXP _DPcircular_sw_circular_cpp2(SEXP sequence1SEXP, SEXP sequence2SEXP, SEXP output_matrixSEXP, SEXP match_scoreSEXP, SEXP mismatch_penaltySEXP, SEXP gap_penaltySEXP, SEXP diagonal_penaltySEXP, SEXP offsetSEXP) {
+List sw_circular_cpp2(std::string sequence1, std::string sequence2, bool output_matrix, int match_score, int mismatch_penalty, int gap_penalty, int diagonal_penalty, int offset, bool trunc);
+RcppExport SEXP _DPcircular_sw_circular_cpp2(SEXP sequence1SEXP, SEXP sequence2SEXP, SEXP output_matrixSEXP, SEXP match_scoreSEXP, SEXP mismatch_penaltySEXP, SEXP gap_penaltySEXP, SEXP diagonal_penaltySEXP, SEXP offsetSEXP, SEXP truncSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< std::string >::type sequence1(sequence1SEXP);
@@ -23,13 +23,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type gap_penalty(gap_penaltySEXP);
     Rcpp::traits::input_parameter< int >::type diagonal_penalty(diagonal_penaltySEXP);
     Rcpp::traits::input_parameter< int >::type offset(offsetSEXP);
-    rcpp_result_gen = Rcpp::wrap(sw_circular_cpp2(sequence1, sequence2, output_matrix, match_score, mismatch_penalty, gap_penalty, diagonal_penalty, offset));
+    Rcpp::traits::input_parameter< bool >::type trunc(truncSEXP);
+    rcpp_result_gen = Rcpp::wrap(sw_circular_cpp2(sequence1, sequence2, output_matrix, match_score, mismatch_penalty, gap_penalty, diagonal_penalty, offset, trunc));
     return rcpp_result_gen;
 END_RCPP
 }
 // sw_circular_cpp
-List sw_circular_cpp(std::string sequence, bool output_matrix, int match_score, int mismatch_penalty, int gap_penalty, int diagonal_penalty, int offset);
-RcppExport SEXP _DPcircular_sw_circular_cpp(SEXP sequenceSEXP, SEXP output_matrixSEXP, SEXP match_scoreSEXP, SEXP mismatch_penaltySEXP, SEXP gap_penaltySEXP, SEXP diagonal_penaltySEXP, SEXP offsetSEXP) {
+List sw_circular_cpp(std::string sequence, bool output_matrix, int match_score, int mismatch_penalty, int gap_penalty, int diagonal_penalty, int offset, bool trunc);
+RcppExport SEXP _DPcircular_sw_circular_cpp(SEXP sequenceSEXP, SEXP output_matrixSEXP, SEXP match_scoreSEXP, SEXP mismatch_penaltySEXP, SEXP gap_penaltySEXP, SEXP diagonal_penaltySEXP, SEXP offsetSEXP, SEXP truncSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< std::string >::type sequence(sequenceSEXP);
@@ -39,7 +40,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type gap_penalty(gap_penaltySEXP);
     Rcpp::traits::input_parameter< int >::type diagonal_penalty(diagonal_penaltySEXP);
     Rcpp::traits::input_parameter< int >::type offset(offsetSEXP);
-    rcpp_result_gen = Rcpp::wrap(sw_circular_cpp(sequence, output_matrix, match_score, mismatch_penalty, gap_penalty, diagonal_penalty, offset));
+    Rcpp::traits::input_parameter< bool >::type trunc(truncSEXP);
+    rcpp_result_gen = Rcpp::wrap(sw_circular_cpp(sequence, output_matrix, match_score, mismatch_penalty, gap_penalty, diagonal_penalty, offset, trunc));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -62,7 +64,6 @@ NumericMatrix compute_matches(CharacterVector seq1, CharacterVector seq2, int wi
 RcppExport SEXP _DPcircular_compute_matches(SEXP seq1SEXP, SEXP seq2SEXP, SEXP windowSEXP, SEXP stepSEXP, SEXP min_matchSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< CharacterVector >::type seq1(seq1SEXP);
     Rcpp::traits::input_parameter< CharacterVector >::type seq2(seq2SEXP);
     Rcpp::traits::input_parameter< int >::type window(windowSEXP);
@@ -86,8 +87,8 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_DPcircular_sw_circular_cpp2", (DL_FUNC) &_DPcircular_sw_circular_cpp2, 8},
-    {"_DPcircular_sw_circular_cpp", (DL_FUNC) &_DPcircular_sw_circular_cpp, 7},
+    {"_DPcircular_sw_circular_cpp2", (DL_FUNC) &_DPcircular_sw_circular_cpp2, 9},
+    {"_DPcircular_sw_circular_cpp", (DL_FUNC) &_DPcircular_sw_circular_cpp, 8},
     {"_DPcircular_sw_cpp", (DL_FUNC) &_DPcircular_sw_cpp, 5},
     {"_DPcircular_compute_matches", (DL_FUNC) &_DPcircular_compute_matches, 5},
     {"_DPcircular_detect_two_poly_regions_cpp", (DL_FUNC) &_DPcircular_detect_two_poly_regions_cpp, 3},
